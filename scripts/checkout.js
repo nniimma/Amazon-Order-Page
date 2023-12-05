@@ -1,10 +1,11 @@
 import { cart, removeFromCart } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { centToDollar } from "./utils/money.js";
+import { updateCartQuantity } from "../data/cart.js";
 
 let productHTML = ''
 cart.forEach((cartItem) => {
-    const productID = cartItem.productID
+    const productID = cartItem.ID
     let matchingProduct;
 
     products.forEach((productsItem) => {
@@ -102,3 +103,5 @@ document.querySelectorAll('.js-delete').forEach((deleteLink) => {
         container.remove()
     })
 })
+
+updateCartQuantity()
