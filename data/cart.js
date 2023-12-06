@@ -25,6 +25,13 @@ export function addToCart(productID){
         })
     }
     saveToStorage()
+
+
+    document.querySelector(`.js-added-to-cart-${ productID }`).classList.add('added-to-cart-active')
+    
+    setTimeout(function(){
+        document.querySelector(`.js-added-to-cart-${productID}`).classList.remove('added-to-cart-active');
+    }, 2000);
 }
 
 export function updateCartQuantity(){
