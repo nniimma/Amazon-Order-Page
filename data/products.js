@@ -656,5 +656,34 @@ export const products = [
       "apparel",
       "mens"
     ]
+  },
+  {
+    id: "bc2847e9-5323-403f-88cf-57fde044a955",
+    image: "images/products/umbrella.jpg",
+    name: "Umbrella",
+    rating: {
+      stars: 2,
+      count: 12
+    },
+    priceCents: 1200,
+    keywords: [
+      "umbrella",
+      "rain"
+    ]
+  },
+  {
+    id: "bc2847e9-5323-413f-88cf-57fde044a955",
+    image: "images/products/backpack.jpg",
+    name: "Backpack",
+    rating: {
+      stars: 5,
+      count: 1245
+    },
+    priceCents: 7599,
+    keywords: [
+      "backpach",
+      "school",
+      "bag"
+    ]
   }
 ];
