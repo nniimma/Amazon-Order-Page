@@ -13,13 +13,15 @@ export function addToCart(productID){
             matchingItem = cartItem
         }
     })
+
+    const productQuantity = document.querySelector(`.js-quantity-selector-${ productID }`).value
     
     if(matchingItem){
-        matchingItem.quantity += 1
+        matchingItem.quantity = Number(productQuantity) + Number(matchingItem.quantity) 
     }else{            
         cart.push({
             ID: productID,
-            quantity: 1
+            quantity: Number(productQuantity)
         })
     }
     saveToStorage()
