@@ -1,7 +1,7 @@
 import { cart, removeFromCart } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { centToDollar } from "./utils/money.js";
-import { updateCartQuantity } from "../data/cart.js";
+import { updateCartQuantity, saveToStorage } from "../data/cart.js";
 
 let productHTML = ''
 cart.forEach((cartItem) => {
@@ -35,9 +35,11 @@ cart.forEach((cartItem) => {
             <span>
                 Quantity: <span class="quantity-label">${ cartItem.quantity }</span>
             </span>
-            <span class="update-quantity-link link-primary">
+            <span class="update-quantity-link link-primary update-quantity-link-${productID}" data-product-id="${matchingProduct.id}">
                 Update
             </span>
+            <input class="quantity-input" id="quantity-input-${productID}"></input>
+            <span class="save-quantity-link link-primary save-quantity-link-${productID}" data-product-id="${matchingProduct.id}">Save</span>
             <span data-product-id="${ matchingProduct.id }" class="delete-quantity-link link-primary js-delete">
                 Delete
             </span>
@@ -103,5 +105,33 @@ document.querySelectorAll('.js-delete').forEach((deleteLink) => {
         container.remove()
     })
 })
+
+document.querySelectorAll('.update-quantity-link').forEach((updateLink) => {
+ updateLink.addEventListener('click', () => {
+    const productID = updateLink.dataset.productId
+        document.querySelector(`.js-cart-item-container-${productID}`).classList.add('is-editing-quantity')
+
+    })
+})
+
+document.querySelectorAll('.save-quantity-link').forEach((saveLink) => {
+ saveLink.addEventListener('click', () => {
+    const productID = saveLink.dataset.productId
+        document.querySelector(`.js-cart-item-container-${productID}`).classList.remove('is-editing-quantity')
+        const newQuantity = document.getElementById(`quantity-input-${productID}`).value;
+        console.log(newQuantity)
+
+        cart.forEach((cartItem) => {
+            if (productID === cartItem.ID){
+                cartItem.quantity = Number(newQuantity)
+            }
+            saveToStorage()
+            updateCartQuantity()
+        })
+    })
+})
+
+
+
 
 updateCartQuantity()
