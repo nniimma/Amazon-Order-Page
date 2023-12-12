@@ -3,6 +3,18 @@ import { products } from "../data/products.js";
 import { centToDollar } from "./utils/money.js";
 import { updateCartQuantity, saveToStorage } from "../data/cart.js";
 
+// external libraries
+hello()
+
+const today = dayjs()
+// external libraries
+
+// dayjs methods
+const deliveryDate = today.add(7, 'days')
+deliveryDate.format('dddd, MMMM D')
+console.log(deliveryDate.format('dddd, MMMM D'))
+// dayjs methods
+
 function updatePage(){
     let productHTML = ''
     cart.forEach((cartItem) => {
