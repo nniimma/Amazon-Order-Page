@@ -1,7 +1,13 @@
+//named export
 import { cart, removeFromCart } from "../data/cart.js";
+//named export
 import { products } from "../data/products.js";
-import { centToDollar } from "./utils/money.js";
+//default export:
+import centToDollar from "./utils/money.js";
+//default export:
 import { updateCartQuantity, saveToStorage } from "../data/cart.js";
+import {hello} from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js'
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js'
 
 // external libraries
 hello()
