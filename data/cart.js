@@ -1,4 +1,8 @@
-export let cart = JSON.parse(localStorage.getItem('cart'))  || []
+export let cart = JSON.parse(localStorage.getItem('cart'));
+
+if (!cart){
+    cart = []
+}
 
 
 export function saveToStorage(){
@@ -21,7 +25,8 @@ export function addToCart(productID){
     }else{            
         cart.push({
             ID: productID,
-            quantity: Number(productQuantity)
+            quantity: Number(productQuantity),
+            deliveryOptionsId: '1'
         })
     }
     saveToStorage()
@@ -54,4 +59,16 @@ export function removeFromCart(productID){
     cart = newCart
     saveToStorage()
     updateCartQuantity()
+}
+
+export function updateDeliveryOption(productId, deliveryOptionId){
+    let matchingItem;
+    cart.forEach((cartItem) =>{
+        if (productId === cartItem.ID){
+            matchingItem = cartItem
+        }
+    })
+
+    matchingItem.deliveryOptionsId = deliveryOptionId
+    saveToStorage()
 }
