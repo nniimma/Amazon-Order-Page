@@ -1,13 +1,14 @@
 //named export
 import { cart, removeFromCart, updateDeliveryOption, updateCartQuantity, saveToStorage } from "../../data/cart.js";
 //named export
-import { products } from "../../data/products.js";
+import { products, getProduct } from "../../data/products.js";
 //default export:
 import centToDollar from "../utils/money.js";
 //default export:
 import {hello} from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js'
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js'
-import { deliveryOptions } from "../../data/deliveryOptions.js";
+import { deliveryOptions, getDeliveryOptions } from "../../data/deliveryOptions.js";
+import { renderPaymentSummary } from "./paymentSummary.js";
 
 // external libraries
 hello()
@@ -25,22 +26,12 @@ export function updatePage(){
     let productHTML = ''
     cart.forEach((cartItem) => {
         const productID = cartItem.ID
-        let matchingProduct;
 
-        products.forEach((productsItem) => {
-            if (productsItem.id === productID){
-                matchingProduct = productsItem;
-            }
-        })
+        const matchingProduct = getProduct(productID)
 
         const deliveryOptionId = cartItem.deliveryOptionsId
  
-        let deliveryOption;
-        deliveryOptions.forEach((option) => {
-            if (option.id === deliveryOptionId){
-                deliveryOption = option
-            }
-        })
+        let deliveryOption = getDeliveryOptions(deliveryOptionId)
 
         const today = dayjs()
         const deliveryDate = today.add(deliveryOption.deliveryDays, `days`)
@@ -134,6 +125,7 @@ export function updatePage(){
             
             removeFromCart(productID)
             container.remove()
+            renderPaymentSummary()
         })
     })
     
@@ -162,6 +154,7 @@ export function updatePage(){
                saveToStorage()
                updateCartQuantity()
                updatePage()
+               renderPaymentSummary()
            })
        })
 
@@ -170,6 +163,7 @@ export function updatePage(){
             const {productId, deliveryOptionId} = element.dataset
             updateDeliveryOption(productId, deliveryOptionId)
             updatePage()
+            renderPaymentSummary()
         })
     })
 }

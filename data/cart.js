@@ -48,6 +48,14 @@ export function updateCartQuantity(){
     document.querySelector('.return-to-home-link').innerHTML = totalQuantity + ' ' + 'items'
 }
 
+export function getTotalQuantity(){
+    let totalQuantity = 0
+    cart.forEach((item) => {
+        totalQuantity += item.quantity
+    })
+    return totalQuantity
+}
+
 export function removeFromCart(productID){
     let newCart = []
 
