@@ -6,7 +6,7 @@ let productsHTML = ''
 
 products.forEach((product) => {
     productsHTML += `
-            <div class="product-container">
+            <div class="product-container js-search">
             <div class="product-image-container">
             <img class="product-image"
                 src="${product.image}">
@@ -81,3 +81,16 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
         updateCartQuantity()
     })
 })
+
+
+document.getElementById('search').addEventListener('keyup', function() {
+    let searchLetter = this.value.toLowerCase().trim();
+
+    document.querySelectorAll('.js-search').forEach(function(element) {
+        if (element.textContent.toLowerCase().includes(searchLetter)) {
+            element.style.display = '';
+        } else {
+            element.style.display = 'none';
+        }
+    });
+});
