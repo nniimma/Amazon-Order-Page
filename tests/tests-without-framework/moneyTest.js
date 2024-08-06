@@ -1,4 +1,4 @@
-import { centToDollar } from '../scripts/utils/money.js';
+import { centToDollar } from '../../scripts/utils/money.js';
 
 //! test suite
 console.log('test suite: centToDollar');
