@@ -1,4 +1,4 @@
-import { centToDollar } from '../scripts/utils/money.js';
+import { centToDollar } from '../../scripts/utils/money.js';
 
 //! suite (describe)
 describe('test suite: centToDollar', () => {
