@@ -40,7 +40,7 @@ export function updatePage(){
                 ${ matchingProduct.name }
                 </div>
                 <div class="product-price">
-                $${ centToDollar(matchingProduct.priceCents) }
+                ${ matchingProduct.getPrice() }
                 </div>
                 <div class="product-quantity">
                 <span>

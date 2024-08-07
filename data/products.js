@@ -1,3 +1,5 @@
+import { centToDollar } from '../scripts/utils/money.js';
+
 export function getProduct(productID){
   let matchingProduct;
 
@@ -10,6 +12,30 @@ export function getProduct(productID){
   return matchingProduct
 }
 
+// the reason to use classes instead of normal objects is that it has more features
+class Product {
+  id;
+  image;
+  name;
+  rating;
+  priceCents;
+
+  constructor(productDetail) {
+    this.id = productDetail.id
+    this.image = productDetail.image
+    this.name = productDetail.name
+    this.rating = productDetail.rating
+    this.priceCents = productDetail.priceCents
+  }
+
+  getStarsUrl() {
+    return `images/ratings/rating-${this.rating.stars * 10}.png`;
+  }
+
+  getPrice() {
+    return `$${centToDollar(this.priceCents)}`;
+  }
+}
 
 export const products = [
   {
@@ -699,4 +725,6 @@ export const products = [
       "bag"
     ]
   }
-];
+].map((productDetails) => {
+  return new Product(productDetails);
+});
