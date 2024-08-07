@@ -1,23 +1,24 @@
 class Cart {
-    // short code of cartItems = undefined; :
+    // public property: it can be accessed anyware
     cartItems;
-    localStorageKey;
+    // private property: can only be used inside this class
+    #localStorageKey;
 
-    //! after creating the object the construtor will be run
     constructor (localStorageKey) {
-        this.localStorageKey = localStorageKey
-        this.loadFromStorage();
+        this.#localStorageKey = localStorageKey
+        this.#loadFromStorage();
     }
 
-    loadFromStorage = function () {
-        this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey));
+    // private method:
+    #loadFromStorage = function () {
+        this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey));
         if (!this.cartItems){
             this.cartItems = []
         }
     }
 
     saveToStorage () {
-        localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems))
+        localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems))
     };
 
     addToCart (productID) {
@@ -95,9 +96,6 @@ class Cart {
 }
 
 //! each object that we generate from a class we call an instance of the class.
-// to check if an object was made from a class:
-//todo: console.log(businessCart instanceof Cart)
-
 const cart = new Cart('cart-oop');
 const businessCart = new Cart('cart-business');
 
