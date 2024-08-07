@@ -88,6 +88,8 @@ class Cart {
 }
 
 //! each object that we generate from a class we call an instance of the class.
+// to check if an object was made from a class:
+//todo: console.log(businessCart instanceof Cart)
 const cart = new Cart();
 const businessCart = new Cart();
 
