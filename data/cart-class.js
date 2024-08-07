@@ -1,6 +1,13 @@
 class Cart {
-    cartItems = undefined;
-    localStorageKey = undefined;
+    // short code of cartItems = undefined; :
+    cartItems;
+    localStorageKey;
+
+    //! after creating the object the construtor will be run
+    constructor (localStorageKey) {
+        this.localStorageKey = localStorageKey
+        this.loadFromStorage();
+    }
 
     loadFromStorage = function () {
         this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey));
@@ -90,10 +97,7 @@ class Cart {
 //! each object that we generate from a class we call an instance of the class.
 // to check if an object was made from a class:
 //todo: console.log(businessCart instanceof Cart)
-const cart = new Cart();
-const businessCart = new Cart();
 
-cart.localStorageKey = 'cart-oop'
-cart.loadFromStorage();
+const cart = new Cart('cart-oop');
+const businessCart = new Cart('cart-business');
 
-businessCart.localStorageKey = 'cart-business'
