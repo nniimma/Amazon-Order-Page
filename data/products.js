@@ -65,26 +65,6 @@ class Clothing extends Product{
   }
 }
 
-/* 
-! in this case this is undefined because the object is not been made yet, we can use this just inside the methods in the object to point to the object itself...
-const object = {
-  a:2,
-  b: this.a,
-  ! in arrow functions this has the value of the outside this of the method, it is good when we use forEach...
-  method: () => {
-    console.log(this)  
-  }
-}
-
-! in the first calling of the function 'this' will be undefined, but in the second one because of call function it will send the first parameter to the this:
-function exampmle(){
-  console.log(this)
-}
-example()
-* in this case hello will be sent to the this
-example.call('hello')
-*/
-
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
