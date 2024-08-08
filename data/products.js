@@ -35,6 +35,10 @@ class Product {
   getPrice() {
     return `$${centToDollar(this.priceCents)}`;
   }
+
+  extraInfoHtml() {
+    return '';
+  }
 }
 
 // to use the properties of the parent class in child class we use extends parentClass
@@ -46,6 +50,18 @@ class Clothing extends Product{
     super(productDetail);
 
     this.sizeChartLink = productDetail.sizeChartLink;
+  }
+
+  // method overriding: because the same method is in parent class but we have it again in child, the one in child will be over written the parent one:
+  extraInfoHtml() {
+    // we can call the methods in parent as well with super:
+    //todo: super.extraInfoHtml();
+    
+    return `
+      <a href="${this.sizeChartLink}" target="_blank">
+        Size chart
+      </a>
+    `;
   }
 }
 
