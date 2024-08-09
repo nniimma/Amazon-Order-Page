@@ -9,6 +9,7 @@ import {hello} from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js'
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js'
 import { deliveryOptions, getDeliveryOptions } from "../../data/deliveryOptions.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
+import { loadProducts } from "../../data/products.js";
 
 export function updatePage(){
     let productHTML = ''
@@ -155,5 +156,7 @@ export function updatePage(){
         })
     })
 }
-updatePage()
-updateCartQuantity()
+loadProducts(() => {
+    updatePage()
+    updateCartQuantity()
+})
