@@ -13,12 +13,9 @@ async function loadPage() {
         });
     });
 
-    return 'hi';
-}
-
-loadPage().then((value) => {
-    console.log(value);
     updatePage();
     renderPaymentSummary();
-})
+}
+
+loadPage();
 
