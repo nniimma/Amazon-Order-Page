@@ -8,8 +8,10 @@ async function loadPage() {
     try{
         await loadProductsFetch();
 
-        const value = await new Promise((resolve) => {
+        const value = await new Promise((resolve, reject) => {
+            // inside the function bellow the throw doesn't work, if we want to make error we should use reject() function
             loadCart(() => {
+                //todo: reject('error');
                 resolve('this value will be saved in "const value"');
             });
         });
