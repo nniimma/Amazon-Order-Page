@@ -7,15 +7,16 @@ import { loadCart } from "../data/cart.js";
 Promise.all([
     new Promise((resolve) => {
         loadProducts(() => {
-            resolve('sending values to next step');
+            resolve('hi');
         });
     }),
     new Promise((resolve) => {
         loadCart(() => {
-            resolve()
+            resolve('bye')
         })
     })
-]).then(() => {
+]).then((values) => {
+    console.log(values);
     updatePage();
     renderPaymentSummary();
 });
