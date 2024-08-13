@@ -5,24 +5,13 @@ import { loadCart } from "../data/cart.js";
 
 // using async await:
 async function loadPage() {
-    await loadProductsFetch()
+    await loadProductsFetch();
+    return 'hi';
 }
 
-loadPage().then(() => {
+loadPage().then((value) => {
+    console.log(value);
     updatePage();
     renderPaymentSummary();
 })
 
-//todo: using Promise.all()
-// Promise.all([
-//     loadProductsFetch(),
-//     new Promise((resolve) => {
-//         loadCart(() => {
-//             resolve('bye')
-//         })
-//     })
-// ]).then((values) => {
-//     console.log(values);
-//     updatePage();
-//     renderPaymentSummary();
-// });
